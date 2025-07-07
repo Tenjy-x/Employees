@@ -36,5 +36,3 @@ CREATE OR REPLACE  view v_WomanEmployees AS
 SELECT   v_employees_current.emp_no , titles.title , count(v_employees_current.emp_no) as woman_count FROM v_employees_current JOIN titles ON titles.emp_no = 
 v_employees_current.emp_no WHERE v_employees_current.gender = 'F' GROUP
 BY titles.title;
-
-SELECT * FROM v_salaries_per_persons WHERE title = 'Assistant Engineer';
