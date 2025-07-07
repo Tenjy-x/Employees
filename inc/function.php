@@ -76,7 +76,7 @@ function CountManANDWoman($bdd) {
    $sql = "SELECT v_ManEmployees.title , man_count , woman_count , AVG(v_salaries_per_persons.salary) as moy FROM v_ManEmployees JOIN v_WomanEmployees 
    ON v_ManEmployees.title = v_WomanEmployees.title JOIN 
     v_salaries_per_persons ON v_ManEmployees.emp_no = v_salaries_per_persons.emp_no GROUP BY v_ManEmployees.title";
-    echo $sql;
+    // echo $sql;
     $result = mysqli_query($bdd,$sql);
     return $result;
 }   
@@ -94,9 +94,5 @@ function duree($bdd , $emp_no) {
     $result = mysqli_query($bdd, $sql);
     $return = mysqli_fetch_assoc($result);
     return $return;
-}
-
-function test() {
-    
 }
 ?>
