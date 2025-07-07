@@ -41,7 +41,7 @@
         </button>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasRightLabel">Recherche avancée</h5>
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">Search</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
@@ -50,22 +50,22 @@
                 <div class="card shadow border-0 rounded-4 p-4">
                   <form action="traitement_recherche.php" method="get">
                     <input type="hidden" name="numero" value="1">
-                    <h5 class="mb-3 text-primary">Département</h5>
+                    <h5 class="mb-3 text-primary">Deoartment</h5>
                     <select name="department" id="department" class="form-select form-select-lg mb-3 rounded-3" aria-label=".form-select-lg example">
-                      <option value="">Aucun</option>
+                      <option value="">None</option>
                       <?php while ($data = mysqli_fetch_assoc($donnes)) {?>
                         <option value="<?php echo $data['dept_no']?>"><?php echo $data['dept_name']?></option>
                       <?php }?>
                     </select>
-                    <h5 class="mb-3 text-primary">Nom de l'employé</h5>
+                    <h5 class="mb-3 text-primary">Name Of Employees</h5>
                     <input type="text" name="Employees_name" class="form-control form-control-lg mb-3 rounded-3" placeholder="Nom ou prénom">
                     <div class="row g-3 mb-3">
                       <div class="col-md-6">
-                        <label class="form-label">Âge minimum</label>
+                        <label class="form-label">Age min</label>
                         <input type="number" name="age_min" class="form-control rounded-3" min="0" placeholder="Min">
                       </div>
                       <div class="col-md-6">
-                        <label class="form-label">Âge maximum</label>
+                        <label class="form-label">Age max</label>
                         <input type="number" name="age_max" class="form-control rounded-3" min="0" placeholder="Max">
                       </div>
                     </div>

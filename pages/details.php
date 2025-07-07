@@ -9,7 +9,7 @@
       <table class = "table table-blue table-striped text-center ">
       <thead>
       <tr>
-          <th>Department</th>
+          <th>Job</th>
           <th>Number Of Man</th>
           <th>Number Of Woman</th>
           <th>SALARY AVERAGE</th>
@@ -18,7 +18,7 @@
       <tbody class = "table-group-divider">
       <?php while ($data = mysqli_fetch_assoc($donnees)) {?>
           <tr>
-              <td><?php echo $data['dept_name']?></td>
+              <td><?php echo $data['title']?></td>
               <td><?php echo $data['man_count']?></td>
               <td><?php echo $data['woman_count']?></td>
               <td><?php echo $data['moy']?></td>
