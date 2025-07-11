@@ -1,6 +1,7 @@
 <?php
     $emp_no = $_GET['num'];
     $duration = duree($bdd, $emp_no);
+    $donnes = selectalldepartements($bdd);
     $fiche_result = FicheEmployees($bdd,$emp_no);
     $salaire_employees = SalaireEmployees($bdd,$emp_no);
     $cadre = TitleEmployees($bdd,$emp_no);
@@ -20,6 +21,38 @@
                 <li class="list-group-item"><strong>Hire date :</strong> <?php echo $data['hire_date']?></li>
             </ul>
         </div>
+        <div class="row">
+            <div class="col text-center mb-3">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Change Department
+                </button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Change Department</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="traitement_changement.php" method = "get">
+                                <label for="dept">Choose your department : </label>
+                                <select name="department" id="dept">
+                                    <?php while ($dept = mysqli_fetch_assoc($donnes)) {?>
+                                        <option value="<?php echo $dept['dept_no']?>"><?php echo $dept['dept_name']?></option>
+                                    <?php } ?>
+                                </select>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <?php }?>
 
     <div class="row mb-4">
