@@ -36,3 +36,7 @@ CREATE OR REPLACE  view v_WomanEmployees AS
 SELECT   v_employees_current.emp_no , titles.title , count(v_employees_current.emp_no) as woman_count FROM v_employees_current JOIN titles ON titles.emp_no = 
 v_employees_current.emp_no WHERE v_employees_current.gender = 'F' GROUP
 BY titles.title;
+
+SELECT * FROM departments JOIN dept_emp ON dept_emp.dept_no =
+departments.dept_no JOIN employees ON employees.emp_no =
+dept_emp.emp_no WHERE dept_emp.to_date = '9999-01-01' LIMIT 10

@@ -41,13 +41,17 @@
                                         <option value="<?php echo $dept['dept_no']?>"><?php echo $dept['dept_name']?></option>
                                     <?php } ?>
                                 </select>
-                            </form>
+                                <input type="hidden" name="emp_no" value="<?php echo $emp_no; ?>">
+                                <label for="date">date of changes: </label>
+                                <input type="date" name="from_date" id="date">
+                            
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
                         </div>
+                            </form>
                     </div>
                 </div>
             </div>

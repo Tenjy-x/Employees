@@ -50,7 +50,7 @@
                 <div class="card shadow border-0 rounded-4 p-4">
                   <form action="traitement_recherche.php" method="get">
                     <input type="hidden" name="numero" value="1">
-                    <h5 class="mb-3 text-primary">Deoartment</h5>
+                    <h5 class="mb-3 text-primary">Department</h5>
                     <select name="department" id="department" class="form-select form-select-lg mb-3 rounded-3" aria-label=".form-select-lg example">
                       <option value="">None</option>
                       <?php while ($data = mysqli_fetch_assoc($donnes)) {?>
@@ -58,7 +58,7 @@
                       <?php }?>
                     </select>
                     <h5 class="mb-3 text-primary">Name Of Employees</h5>
-                    <input type="text" name="Employees_name" class="form-control form-control-lg mb-3 rounded-3" placeholder="Nom ou prénom">
+                    <input type="text" name="Employees_name" class="form-control form-control-lg mb-3 rounded-3" placeholder="Name">
                     <div class="row g-3 mb-3">
                       <div class="col-md-6">
                         <label class="form-label">Age min</label>

@@ -1,6 +1,7 @@
 <?php
 function selectalldepartements($bdd){
     $sql = "SELECT * FROM departments";
+    // echo $sql;
     $result = mysqli_query($bdd,$sql);
     return $result;
 }
@@ -94,5 +95,12 @@ function duree($bdd , $emp_no) {
     $result = mysqli_query($bdd, $sql);
     $return = mysqli_fetch_assoc($result);
     return $return;
+}
+
+function update_department($bdd, $emp_no, $dept_no, $from_date) {
+    $sql = "UPDATE dept_emp SET dept_no = '$dept_no', from_date = '$from_date' WHERE emp_no = '$emp_no' AND to_date = '9999-01-01'";
+    // echo $sql;
+    $result = mysqli_query($bdd, $sql);
+    return $result;
 }
 ?>
