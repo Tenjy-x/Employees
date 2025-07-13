@@ -2,6 +2,7 @@
   include('../inc/connexion.php');
   include('../inc/function.php');
   session_start();
+  ini_set('display_errors', 1);
   $donnes = selectalldepartements($bdd);
 ?>
 

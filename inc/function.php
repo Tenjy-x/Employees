@@ -103,4 +103,12 @@ function update_department($bdd, $emp_no, $dept_no, $from_date) {
     $result = mysqli_query($bdd, $sql);
     return $result;
 }
+
+function find_departementsNameForEmployees($bdd , $emp_no) {
+    $sql = "SELECT * FROM departments JOIN v_employees_current ON v_employees_current.dept_no = departments.dept_no WHERE v_employees_current.emp_no = '$emp_no'";
+    // echo $sql;
+    $result = mysqli_query($bdd, $sql);
+    $return = mysqli_fetch_assoc($result);
+    return $return;
+}
 ?>

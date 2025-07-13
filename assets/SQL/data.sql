@@ -1,7 +1,7 @@
 CREATE OR REPLACE view v_employees_current AS
 SELECT employees.emp_no , employees.birth_date , 
 employees.first_name , employees.last_name ,
-employees.gender , employees.hire_date, dept_emp.dept_no FROM employees  JOIN dept_emp 
+employees.gender , employees.hire_date, dept_emp.dept_no, dept_emp.from_date FROM employees  JOIN dept_emp 
 ON dept_emp.emp_no = employees.emp_no 
 WHERE dept_emp.to_date = '9999-01-01'
 
@@ -37,6 +37,3 @@ SELECT   v_employees_current.emp_no , titles.title , count(v_employees_current.e
 v_employees_current.emp_no WHERE v_employees_current.gender = 'F' GROUP
 BY titles.title;
 
-SELECT * FROM departments JOIN dept_emp ON dept_emp.dept_no =
-departments.dept_no JOIN employees ON employees.emp_no =
-dept_emp.emp_no WHERE dept_emp.to_date = '9999-01-01' LIMIT 10

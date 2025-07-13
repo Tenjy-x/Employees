@@ -6,47 +6,58 @@
     $salaire_employees = SalaireEmployees($bdd,$emp_no);
     $cadre = TitleEmployees($bdd,$emp_no);
     $history = Historique($bdd,$emp_no);
+    $dept = find_departementsNameForEmployees($bdd, $emp_no);
 ?>
-<div class="container mt-4">
+
+<div class="container py-4">
     <?php while ($data = mysqli_fetch_assoc($fiche_result)) {?>
-        <div class="card mb-4 shadow">
-            <div class="card-header bg-primary text-white">
-                <h2 class="mb-0">Employee record</h2>
+        <div class="card mb-4 shadow-lg border-0 rounded-4">
+            <div class="card-header bg-primary text-white rounded-top-4 d-flex align-items-center justify-content-between">
+                <h2 class="mb-0">Employee Record</h2>
+                <span class="badge bg-light text-primary fs-6">#<?php echo $emp_no; ?></span>
             </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>First name :</strong> <?php echo $data['first_name']?></li>
-                <li class="list-group-item"><strong>Last name :</strong> <?php echo $data['last_name']?></li>
-                <li class="list-group-item"><strong>Birth date :</strong> <?php echo $data['birth_date']?></li>
-                <li class="list-group-item"><strong>Gender :</strong> <?php echo $data['gender']?></li>
-                <li class="list-group-item"><strong>Hire date :</strong> <?php echo $data['hire_date']?></li>
+                <li class="list-group-item"><strong>First name :</strong> <span class="text-primary fw-semibold"><?php echo $data['first_name']?></span></li>
+                <li class="list-group-item"><strong>Last name :</strong> <span class="text-primary fw-semibold"><?php echo $data['last_name']?></span></li>
+                <li class="list-group-item"><strong>Birth date :</strong> <span class="text-secondary"><?php echo $data['birth_date']?></span></li>
+                <li class="list-group-item"><strong>Gender :</strong> <span class="text-secondary"><?php echo $data['gender']?></span></li>
+                <li class="list-group-item"><strong>Hire date :</strong> <span class="text-secondary"><?php echo $data['hire_date']?></span></li>
             </ul>
         </div>
         <div class="row">
             <div class="col text-center mb-3">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn btn-outline-primary px-4 py-2 rounded-3 shadow-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Change Department
                 </button>
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-content rounded-4">
+                        <div class="modal-header bg-primary text-white rounded-top-4">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Change Department</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="traitement_changement.php" method = "get">
-                                <label for="dept">Choose your department : </label>
-                                <select name="department" id="dept">
-                                    <?php while ($dept = mysqli_fetch_assoc($donnes)) {?>
-                                        <option value="<?php echo $dept['dept_no']?>"><?php echo $dept['dept_name']?></option>
-                                    <?php } ?>
-                                </select>
+                            <div class="mb-3">
+                                <h5 class="mb-1 text-primary">Current department</h5>
+                                <span class="fw-semibold text-dark"><?php echo $dept['dept_name']?></span>
+                                <p class="text-secondary small mb-0">Since: <?php echo $dept['from_date']?></p>
+                            </div>
+                            <form action="traitement_changement.php" method="get">
+                                <div class="mb-3">
+                                    <label for="dept" class="form-label">Choose your department:</label>
+                                    <select name="department" id="dept" class="form-select rounded-3">
+                                        <?php while ($dept = mysqli_fetch_assoc($donnes)) {?>
+                                            <option value="<?php echo $dept['dept_no']?>"><?php echo $dept['dept_name']?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
                                 <input type="hidden" name="emp_no" value="<?php echo $emp_no; ?>">
-                                <label for="date">date of changes: </label>
-                                <input type="date" name="from_date" id="date">
-                            
+                                <div class="mb-3">
+                                    <label for="date" class="form-label">Date of change:</label>
+                                    <input type="date" name="from_date" id="date" class="form-control rounded-3">
+                                </div>
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer rounded-bottom-4">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
@@ -54,9 +65,30 @@
                             </form>
                     </div>
                 </div>
+                
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#1exampleModal">
+                Become a Manager
+                </button>
+
+                <div class="modal fade" id="1exampleModal" tabindex="-1" aria-labelledby="1exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
             </div>
         </div>
-
     <?php }?>
 
     <div class="row mb-4">
